@@ -494,7 +494,7 @@
   "docs.notFoundError": "We were not able to receive docs. Please click the link above to open docs on our website",
   "errorView.notFound": "Resource not found.",
   "errorView.notAuthorized": "You don’t have permission to access this page.",
-  "errorView.unknown": "Unknown",
+  "errorView.unknown": "An unknown error occurred.",
 
   "ui.goBack": "Go back",
   "ui.input.showPassword": "Show password",
