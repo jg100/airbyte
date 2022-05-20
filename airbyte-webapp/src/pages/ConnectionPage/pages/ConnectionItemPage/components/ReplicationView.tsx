@@ -73,11 +73,11 @@ export const ReplicationView: React.FC<ReplicationViewProps> = ({ onAfterSaveSch
 
   const connection = activeUpdatingSchemaMode ? connectionWithRefreshCatalog : initialConnection;
 
-  const onSubmit = async (values: ValuesProps, formikHelpers?: FormikHelpers<ValuesProps>) => {
+  const onResetDataModalSubmit = async (values: ValuesProps, formikHelpers?: FormikHelpers<ValuesProps>) => {
     const initialSyncSchema = connection?.syncCatalog;
 
     await updateConnection({
-      ...values,
+      ...currentValues,
       connectionId,
       status: initialConnection.status || "",
       withRefreshedCatalog: activeUpdatingSchemaMode,
@@ -85,7 +85,7 @@ export const ReplicationView: React.FC<ReplicationViewProps> = ({ onAfterSaveSch
     });
 
     setSaved(true);
-    if (!equal(values.syncCatalog, initialSyncSchema)) {
+    if (!equal(currentValues.syncCatalog, initialSyncSchema)) {
       onAfterSaveSchema();
     }
 
@@ -103,7 +103,7 @@ export const ReplicationView: React.FC<ReplicationViewProps> = ({ onAfterSaveSch
       submitButtonText: "connection.updateSchema",
       submitButtonDataId: "refresh",
       onSubmit: async () => {
-        await onSubmit(currentValues);
+        await onResetDataModalSubmit(currentValues);
         closeConfirmationModal();
       },
     });
@@ -114,7 +114,7 @@ export const ReplicationView: React.FC<ReplicationViewProps> = ({ onAfterSaveSch
       setCurrentValues(values);
       openResetDataModal();
     } else {
-      await onSubmit(values);
+      await onResetDataModalSubmit(values);
     }
   };
 
