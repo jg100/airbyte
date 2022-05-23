@@ -123,11 +123,15 @@ public class TemporalClient {
   // one. either temporal decides and can report it or it is injected into temporal runs.
   @VisibleForTesting
   public TemporalClient(final WorkflowClient client,
-                        final Path workspaceRoot,
-                        final WorkflowServiceStubs workflowServiceStubs) {
+      final Path workspaceRoot,
+      final WorkflowServiceStubs workflowServiceStubs) {
     this.client = client;
     this.workspaceRoot = workspaceRoot;
     this.service = workflowServiceStubs;
+  }
+
+  public WorkflowClient getWorkflowClient() {
+    return this.client;
   }
 
   public TemporalResponse<ConnectorSpecification> submitGetSpec(final UUID jobId, final int attempt, final JobGetSpecConfig config) {
