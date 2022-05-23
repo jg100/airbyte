@@ -122,9 +122,9 @@ public class TemporalClient {
   // todo (cgardens) - there are two sources of truth on workspace root. we need to get this down to
   // one. either temporal decides and can report it or it is injected into temporal runs.
   @VisibleForTesting
-  protected TemporalClient(final WorkflowClient client,
-                           final Path workspaceRoot,
-                           final WorkflowServiceStubs workflowServiceStubs) {
+  public TemporalClient(final WorkflowClient client,
+                        final Path workspaceRoot,
+                        final WorkflowServiceStubs workflowServiceStubs) {
     this.client = client;
     this.workspaceRoot = workspaceRoot;
     this.service = workflowServiceStubs;
